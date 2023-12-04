@@ -6,7 +6,7 @@
 exports.getBootcamps = (req, res, next) => {
     res
     .status(200)
-    .json({ success: true, data: { id: 1, msg: "show all bootcamps" } });
+    .json({ success: true, data: { id: 1, msg: "show all bootcamps", hello:req.hello } });
 }
 
 //@desc     Get single bootcamps
