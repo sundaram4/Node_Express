@@ -5,6 +5,7 @@ const dotenv = require("dotenv");
 //const logger = require("./middleware/logger")
 const connectDB = require('./config/db')
 const colors = require('colors')
+const errorHandler = require('./middleware/error')
 
 //using morgan
 const morgan = require("morgan")
@@ -32,6 +33,10 @@ if(process.env.NODE_ENV === 'development'){
 
 //Mount routers
 app.use('/api/v1/bootcamps', bootcamps);
+
+//can use only after mounting routers
+// errorhandler
+app.use(errorHandler);
 
 const PORT = process.env.PORT || 5000;
 
