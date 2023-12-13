@@ -96,7 +96,6 @@ const BootcampSchema = new mongoose.Schema({
     default: Date.now,
   }
 });
-
 //Create bootcamp slug from the name
 BootcampSchema.pre("save", function(){
   //console.log(`logging name ${this.name}`);
