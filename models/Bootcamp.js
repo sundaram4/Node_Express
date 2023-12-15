@@ -98,8 +98,13 @@ const BootcampSchema = new mongoose.Schema({
 });
 //Create bootcamp slug from the name
 BootcampSchema.pre("save", function(){
-  //console.log(`logging name ${this.name}`);
   this.slug = slugify(this.name,{lower:true});
+  console.log(`logging name ${this.slug}`);
 })
+
+//Geocode & create location field
+// BootcampSchema.pre('save', async function() {
+  
+// })
 
 module.exports = mongoose.model('Bootcamp', BootcampSchema)
