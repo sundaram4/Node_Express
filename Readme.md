@@ -68,3 +68,17 @@ since variable and key are same
 
 ```
 
+Course Model & Seeding
+```
+const mongoose = require('mongoose');
+const CourseSchema = new mongoose.Schema({
+  //pass the object
+})
+
+```
+
+Course Routes & controller
+```
+
+```
+
