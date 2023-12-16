@@ -9,17 +9,41 @@ const asyncHandler = require("../middleware/async");
 // we need to export each method so that we get it into the routes file
 exports.getBootcamps = asyncHandler(async (req, res, next) => {
   let query;
-  
-  // query parameters as JSON string
-  let queryStr = JSON.stringify(req.query);
 
+  //copy req.query
+  const reqQuery = {...req.query};
+
+  //Fields to exclude
+  const removeFields = ['select','sort'];
+
+  //Loop over removeFields and delete them from the reqQuery
+  removeFields.forEach(param => delete reqQuery[param]);
+
+  // Create query string
+  let queryStr = JSON.stringify(reqQuery);
+
+  //Create operators ($gt, $gte, $lt etc)
   queryStr = queryStr.replace(/\b(gt|gte|lt|lte|in)\b/g, match => `$${match}` );
-  //console.log(queryStr)
-  //console.log(JSON.parse(queryStr));
-
-  query = await Bootcamp.find(JSON.parse(queryStr));
-
   
+  //Finding resource
+  query = Bootcamp.find(JSON.parse(queryStr));
+
+  //Select Fields
+  if(req.query.select){
+    const fields = req.query.select.split(',').join(' ');
+    console.log(fields);
+    query = query.select(fields);
+  }
+
+  //Sort
+  if(req.query.sort){
+    const sortBy = req.query.sort.split(',').join(' ');
+    query = query.sort(sortBy);
+  }else{
+    query = query.sort('-createdAt');
+  }
+
+  //Executing query
   const bootcamps = await query;
   res
     .status(200)

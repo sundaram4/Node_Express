@@ -47,3 +47,20 @@ node seeder -i
 node seeder -d
 ```
 
+Select & Sorting
+```
+http://localhost:5000/api/v1/bootcamps/?select=name,description
+
+//selecting name and occupation field
+query.select('name occupation')
+
+//sorting by  occupation
+sort( { occupation:-1 } )
+
+```
+
+Adding Pagination
+```
+
+```
+
