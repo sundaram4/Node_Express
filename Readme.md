@@ -31,3 +31,10 @@ bootcamps,courses.. --- different endpoints
 
 /api/v1/users
 
+'''
+http://localhost:5000/api/v1/bootcamps?location.state=MA&housing=true
+
+? -- meaning query parameter
+& -- using & we can keep adding more parameters to string
+
+'''
