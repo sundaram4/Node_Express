@@ -6,7 +6,14 @@ const {
   updateBootcamp,
   createBootcamp,
 } = require("../controllers/bootcamp");
+
+//Include other resource routers
+const courseRouter = require('./courses');
+
 const router = express.Router();
+
+//Re-route into other resource roters
+router.use('/:bootcampId/courses', courseRouter)
 
 router
   .route("/")
