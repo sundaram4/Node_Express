@@ -61,6 +61,10 @@ sort( { occupation:-1 } )
 
 Adding Pagination
 ```
+http://localhost:5000/api/v1/bootcamps/?page=2&limit=2
+
+limit: limit can be written as limit 
+since variable and key are same
 
 ```
 
