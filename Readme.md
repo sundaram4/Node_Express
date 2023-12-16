@@ -34,9 +34,16 @@ bootcamps,courses.. --- different endpoints
 ```
 
 ```
-http://localhost:5000/api/v1/bootcamps?location.state=MA&housing=true
+http://localhost:5000/api/v1/bootcamps/?location.state=MA&housing=true
+
+http://localhost:5000/api/v1/bootcamps/?average.Cost[lte]=10000 -- 
+    db.inventory.find( { qty:{ $gt:20 } } )
 
 ? -- meaning query parameter
 & -- using & we can keep adding more parameters to string
+
+
+node seeder -i
+node seeder -d
 ```
 

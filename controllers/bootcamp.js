@@ -8,8 +8,19 @@ const asyncHandler = require("../middleware/async");
 
 // we need to export each method so that we get it into the routes file
 exports.getBootcamps = asyncHandler(async (req, res, next) => {
-  //res.status(200).json({ success: true, data: { id: 1, msg: "show all bootcamps", hello:req.hello } });
-  const bootcamps = await Bootcamp.find();
+  let query;
+  
+  // query parameters as JSON string
+  let queryStr = JSON.stringify(req.query);
+
+  queryStr = queryStr.replace(/\b(gt|gte|lt|lte|in)\b/g, match => `$${match}` );
+  //console.log(queryStr)
+  //console.log(JSON.parse(queryStr));
+
+  query = await Bootcamp.find(JSON.parse(queryStr));
+
+  
+  const bootcamps = await query;
   res
     .status(200)
     .json({ success: true, count: bootcamps.length, data: bootcamps });
