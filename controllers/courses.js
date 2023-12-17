@@ -69,3 +69,44 @@ exports.addCourse = asyncHandler(async (req, res, next) => {
   });
 
 });
+
+// @desc      Update courses
+// @route     PUT /api/v1/courses/:id
+// @access    Private
+exports.updateCourse = asyncHandler(async (req, res, next) => {
+  const course = await Course.findByIdAndUpdate(req.params.id, req.body, {
+    new:true,
+    runValidators:true
+  });
+
+  if(!course){
+    //res.status(400).json({success:false,message:`Course not found with id of ${req.params.id}`})
+    return next(new ErrorResponse(`Course not found with id of ${req.params.id}`, 404))
+  }
+
+  res.status(200).json({
+      success:true,
+      data:course
+  });
+
+});
+
+// @desc      Delete courses
+// @route     Delete /api/v1/courses/:id
+// @access    Private
+exports.deleteCourse = asyncHandler(async (req, res, next) => {
+  let course = await Course.findById(req.params.id);
+
+  if(!course){
+    //res.status(400).json({success:false,message:`Course not found with id of ${req.params.id}`})
+    return next(new ErrorResponse(`Course not found with id of ${req.params.id}`, 404))
+  }
+
+  course = await course.deleteOne();
+
+  res.status(200).json({
+      success:true,
+      data:course
+  });
+
+});
