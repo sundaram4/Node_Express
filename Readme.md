@@ -77,8 +77,21 @@ const CourseSchema = new mongoose.Schema({
 
 ```
 
-Course Routes & controller
+Aggegrate- Calculate trhe avg cost
 ```
+  in Mongoose you have something called statics same as static method
+  //calling a static method on Model ex:
+  //we would call like this
+  Course.goFish();
+
+  //calling a method 
+  const courses = new Course();
+  courses.goFish()
+
+  static - is going to be directly on the model
+  method - is going to be on whatever you create from the model
+           or whatever you get from the model
+
 
 ```
 

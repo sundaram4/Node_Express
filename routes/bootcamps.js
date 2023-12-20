@@ -5,6 +5,7 @@ const {
   deleteBootcamp,
   updateBootcamp,
   createBootcamp,
+  bootcampPhotoUpload
 } = require("../controllers/bootcamp");
 
 //Include other resource routers
@@ -14,6 +15,8 @@ const router = express.Router();
 
 //Re-route into other resource roters
 router.use('/:bootcampId/courses', courseRouter)
+
+router.route('/:id/photo').put(bootcampPhotoUpload);
 
 router
   .route("/")
