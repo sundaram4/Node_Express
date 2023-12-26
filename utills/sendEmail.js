@@ -12,11 +12,12 @@ const sendEmail = async (options) => {
     });
 
     //send mail with defined transport object
+    console.log(options);
     const message = await transporter.sendMail({
         from:`${process.env.FROM_NAME} <${process.env.FROM_EMAIL}>`,
         to:options.email,
         subject:options.subject,
-        subject:options.message,
+        text:options.message,
         //html:'<b>Hello world</b>' // html body
     });
 
